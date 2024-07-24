@@ -1,18 +1,27 @@
-import tkinter as tk
+import pygame
+import sys
+pygame.init()
 
-root = tk.Tk()
+# Get screen dimensions
+screen_info = pygame.display.Info()
+screen_width = screen_info.current_w
+screen_height = screen_info.current_h
 
-# Get the screen width and height of the user
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
+# Set up the display
+screen = pygame.display.set_mode((screen_width*0.95, screen_height*0.95))
 
-root.geometry(str(screen_width) + 'x' + str(screen_height)) #sets the window = the user's sxreen width/height
-root.title("Cannonneer") #name of window
+# Main loop
+running = True #I set it to true 
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-#Main menu title
-label = tk.Label(root, text="Hello, world!", font=("Helvetica", 24))
-label.place(relx=0.5, rely=0.5, anchor='center')
+    screen.fill((255, 255, 255))
 
-# Run the main loop
-root.mainloop()
+    # Update the display
+    pygame.display.flip()
 
+# Quit Pygame
+pygame.quit()
+sys.exit()
